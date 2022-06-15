@@ -136,13 +136,14 @@ def read_package(workout_type: str, data: List[Union[int, float]]) -> Training:
     train_code = {'SWM': Swimming,
                   'RUN': Running,
                   'WLK': SportsWalking}
-    if workout_type in train_code.keys():
+    if workout_type in train_code:
         result = train_code[workout_type](*data)
         return result
     else:
+        available_trainings = list(train_code)
         raise ValueError(
             f'Введён неверный тип тренировки: "{workout_type}". '
-            'Поддерживаемые типы тренировок: "SWM", "RUN", "WLK".'
+            f'Поддерживаемые типы тренировок: {available_trainings}.'
         )
 
 
